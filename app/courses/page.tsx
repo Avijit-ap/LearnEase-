@@ -12,10 +12,10 @@ export default function Courses() {
   const { user } = useAuth();
   const router = useRouter();
 
-  if (!user) {
-    router.push("/login");
-    return null;
-  }
+  // if (!user) {
+  //   router.push("/login");
+  //   return null;
+  // }
 
   return (
     <div className="container mx-auto px-4 py-8">

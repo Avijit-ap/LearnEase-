@@ -1,3 +1,12 @@
+
+export interface UserProgress {
+  id: string;
+  userId: string;
+  courseId: string;
+  lessonId: string;
+  timestamp: string;
+}
+
 export class DB {
   private db: IDBDatabase | null = null;
   private readonly DB_NAME = "lms_db";
@@ -52,7 +61,7 @@ export class DB {
     });
   }
 
-  async getProgress(userId: string) {
+  async getProgress(userId: string): Promise<UserProgress[]> {
     if (!this.db) await this.init();
 
     return new Promise((resolve, reject) => {
