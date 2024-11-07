@@ -16,28 +16,28 @@ import {
 import { Progress } from "@/components/ui/progress";
 import { CheckCircle, Lock } from "lucide-react";
 import Link from "next/link";
+import { redirect } from 'next/navigation';
 
 export default function CourseComponent({ params }: { params: { courseId: string } }) {
   const { user } = useAuth();
-  const router = useRouter();
   const [progress, setProgress] = useState<any[]>([]);
 
   const course = courses.find((c) => c.id === params.courseId);
   useEffect(() => {
-    // if (!user) {
-    //   router.push("/login");
-    //   return;
-    // }
-
+    if (!user) {
+      redirect('/login');
+      return;
+    }
+  
     const loadProgress = async () => {
       if (user) {
         const userProgress = await db.getProgress(user.id);
         setProgress(userProgress);
       }
     };
-
+  
     loadProgress();
-  }, [user, router]);
+  }, [user]);
 
   if (!course) {
     return <div>Course not found</div>;
