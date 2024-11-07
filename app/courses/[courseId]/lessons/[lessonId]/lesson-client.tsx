@@ -16,7 +16,7 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast"
-import ReactMarkdown from "react-markdown";
+import { MarkdownContent } from "@/components/MarkdownContent";
 
 export default function LessonComponent({
   params,
@@ -69,7 +69,7 @@ export default function LessonComponent({
       <div className="max-w-3xl mx-auto">
         {!showQuiz ? (
           <div className="prose dark:prose-invert max-w-none">
-            <ReactMarkdown>{lesson.content}</ReactMarkdown>
+            <MarkdownContent content={lesson.content} />
             <Button
               onClick={() => setShowQuiz(true)}
               className="mt-8"
